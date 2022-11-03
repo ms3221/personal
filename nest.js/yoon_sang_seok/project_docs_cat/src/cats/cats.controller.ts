@@ -1,3 +1,5 @@
+import { LoginRequestDto } from './../auth/dto/login.request.dto';
+import { AuthService } from './../auth/auth.service';
 import { ReadOnlyCatDto } from './dto/cat.dto';
 import { Body, Controller, Get, Post, UseFilters } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
@@ -7,7 +9,7 @@ import { CatRequestDto } from './dto/cats.request.dto';
 
 @Controller('cats')
 export class CatsController {
-  constructor(private readonly catService: CatsService) {}
+  constructor(private readonly catService: CatsService, private readonly authService: AuthService) {}
 
   @Get()
   getCurrentCat() {
@@ -29,8 +31,8 @@ export class CatsController {
     return this.catService.signUp(body);
   }
   @Post('login')
-  logIn() {
-    return 'login';
+  logIn(@Body() data: LoginRequestDto) {
+    return this.authService.jwtLogin(data);
   }
   @Post('logout')
   logOut() {

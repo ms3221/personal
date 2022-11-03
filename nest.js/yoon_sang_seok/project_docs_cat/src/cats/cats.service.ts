@@ -1,3 +1,4 @@
+import { AuthService } from './../auth/auth.service';
 import { CatsRepository } from 'src/cats/cats.repository';
 import { CatRequestDto } from './dto/cats.request.dto';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
