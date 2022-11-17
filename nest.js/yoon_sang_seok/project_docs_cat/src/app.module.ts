@@ -12,14 +12,13 @@ import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    MongooseModule.forRoot(process.env.DB),
+    MongooseModule.forRoot('mongodb+srv://nova:ZPVaLfCaU6aWiEH2@cluster0.7xyeubk.mongodb.net/cats?retryWrites=true&w=majority'),
     CatsModule,
     AuthModule,
   ],
   controllers: [AppController, CatsController],
   providers: [AppService],
-}
-)
+})
 export class AppModule implements NestModule {
   private readonly isDev: boolean = process.env.MODE === 'dev' ? true : false;
   configure(consumer: MiddlewareConsumer) {

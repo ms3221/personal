@@ -3,9 +3,9 @@ import { CatsRepository } from './../cats/cats.repository';
 import { JwtStrategy } from './jwt/jwt.strategy';
 import { Module, forwardRef } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
-import {JwtModule} from '@nestjs/jwt'
+import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
-
+//* JWT Moduel는 JWT를 만들어줄때 사용하는 것 
 @Module({
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt', session: false }),
@@ -16,6 +16,6 @@ import { AuthService } from './auth.service';
     forwardRef(() => CatsModule),
   ],
   providers: [AuthService, JwtStrategy],
-  exports: [AuthService]
+  exports: [AuthService],
 })
 export class AuthModule {}

@@ -1,29 +1,35 @@
+import { Request } from 'express';
+import { JwtAuthGuard } from './../auth/jwt/jwt.guard';
 import { LoginRequestDto } from './../auth/dto/login.request.dto';
 import { AuthService } from './../auth/auth.service';
 import { ReadOnlyCatDto } from './dto/cat.dto';
-import { Body, Controller, Get, Post, UseFilters } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, UseFilters, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { Cat } from 'src/schemas/cats.shcema';
 import { CatsService } from './cats.service';
 import { CatRequestDto } from './dto/cats.request.dto';
+import { CurrentUser } from 'src/common/decorator/user.decorator';
 
 @Controller('cats')
 export class CatsController {
-  constructor(private readonly catService: CatsService, private readonly authService: AuthService) {}
+  constructor(
+    private readonly catService: CatsService,
+    private readonly authService: AuthService,
+  ) {}
 
   @Get()
-  getCurrentCat() {
-    return 'current cat';
+  @UseGuards(JwtAuthGuard)
+  getCurrentCat(@CurrentUser() cat: Cat) {
+    return cat.readOnlyData;
   }
-  
   @ApiResponse({
-    status:500,
+    status: 500,
     description: 'Server Errorr..',
   })
   @ApiResponse({
-    status:200,
+    status: 200,
     description: 'success',
-    type : ReadOnlyCatDto,
+    type: ReadOnlyCatDto,
   })
   @ApiOperation({ summary: '회원가입' })
   @Post()
