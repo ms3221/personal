@@ -22,7 +22,7 @@ describe('MoviesService', () => {
     expect(service).toBeDefined();
   });
 
-  describe('getAll',() => {
+  describe('getAll', () => {
     it('should return an array', () => {
       const result = service.getAll();
       expect(result).toBeInstanceOf(Array);
@@ -44,7 +44,7 @@ describe('MoviesService', () => {
       try {
         service.getOne(999);
       } catch (e) {
-        expect(e).toBeInstanceOf(NotFoundException)
+        expect(e).toBeInstanceOf(NotFoundException);
         expect(e.message).toBe('Movie with ID 999 not found.');
       }
     });
@@ -66,7 +66,7 @@ describe('MoviesService', () => {
       try {
         service.deleteOne(999);
       } catch (error) {
-        expect(error).toBeInstanceOf(NotFoundException)
+        expect(error).toBeInstanceOf(NotFoundException);
       }
     });
   });
@@ -87,7 +87,7 @@ describe('MoviesService', () => {
     it('should update a moive', () => {
       service.update(1, { title: 'Updated Test' });
       const movie = service.getOne(1);
-     expect(movie.title).toEqual('Updated Test');
+      expect(movie.title).toEqual('Updated Test');
     });
   });
 });
