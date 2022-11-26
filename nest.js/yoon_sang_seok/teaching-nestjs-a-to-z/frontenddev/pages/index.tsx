@@ -18,8 +18,8 @@ function Home() {
     const response = await axios.get(`${api.cats}/all`, {
       withCredentials: true,
     });
-    console.log(response.data.data);
-    setCats(response.data.data);
+    console.log(response.data);
+    setCats(response.data);
   };
 
   useEffect(() => {

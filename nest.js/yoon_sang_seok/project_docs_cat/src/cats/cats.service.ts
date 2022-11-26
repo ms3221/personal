@@ -26,4 +26,18 @@ export class CatsService {
     });
     return cat.readOnlyData;
   }
+  async uploadImg(cat: Cat, files: Express.Multer.File[]) {
+    const fileName = `cats/${files[0].filename}`;
+    const newCat = await this.catsRepository.findByIdAndUpdateImg(
+      cat.id,
+      fileName,
+    );
+    return newCat;
+  }
+  async getAllCat() {
+    const allCat = await this.catsRepository.findAll();
+    const readOnlyCats = allCat.map((cat) => cat.readOnlyData);
+    console.log(allCat);
+    return readOnlyCats;
+  }
 }
