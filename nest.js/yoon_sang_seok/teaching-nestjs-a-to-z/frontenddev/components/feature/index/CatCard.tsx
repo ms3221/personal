@@ -8,7 +8,7 @@ type Props = {
 };
 
 function CatCard({ cat }: Props) {
-  console.log(cat);
+  console.log(cat.imgUrl, "123");
   return (
     <Col xs={24} sm={12} md={8}>
       <Card

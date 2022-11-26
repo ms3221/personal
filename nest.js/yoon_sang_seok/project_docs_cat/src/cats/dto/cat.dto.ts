@@ -4,7 +4,7 @@ import { ApiProperty, PickType } from '@nestjs/swagger';
 import { IsEmpty, IsString } from 'class-validator';
 //클래스의 장점 재사용성이 좋다.
 export class ReadOnlyCatDto extends PickType(Cat, ['email', 'name' as const]) {
-  @ApiProperty({
+   @ApiProperty({
     example: '232323',
     description: 'id',
   })

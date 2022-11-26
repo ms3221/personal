@@ -1,4 +1,4 @@
 import { Cat } from './../../schemas/cats.shcema';
-import { PickType } from '@nestjs/swagger';
+import { ApiProperty, PickType } from '@nestjs/swagger';
 
 export class LoginRequestDto extends PickType(Cat, ['email', 'password']) {}

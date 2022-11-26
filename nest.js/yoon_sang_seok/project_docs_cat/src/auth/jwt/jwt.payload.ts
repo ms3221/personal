@@ -1,4 +1,4 @@
 export type Palyload = {
-  email: string,
-  sub: string,
-}
+  email: string;
+  sub: string;
+};

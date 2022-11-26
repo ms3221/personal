@@ -36,15 +36,16 @@ const LoginForm = () => {
         { email, password },
         { withCredentials: true }
       );
-      console.log(response.data);
+
       const getReponse = await axios.get(`${api.cats}`, {
         withCredentials: true,
         headers: {
-          Authorization: "Bearer " + response.data.data.token,
+          Authorization: "Bearer " + response.data.token,
         },
       });
+      console.log(getReponse.data, "data");
 
-      login({ ...getReponse.data.data, token: response.data.data.token });
+      login({ ...getReponse.data, token: response.data.token });
     } catch (error) {
       if (error.response) {
         console.log(error.response);

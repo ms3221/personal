@@ -124,6 +124,7 @@ const AppLayout = ({ children, isSignup = false }: Props): JSX.Element => {
         form.append("image", file);
       });
       console.log(form.getAll("image"));
+
       try {
         setIsUpdated(false);
         const newCatResponse = await axios.post(`${api.cats}/upload`, form, {
@@ -132,8 +133,8 @@ const AppLayout = ({ children, isSignup = false }: Props): JSX.Element => {
             Authorization: "Bearer " + me.token,
           },
         });
-        console.log(newCatResponse);
-        login({ ...newCatResponse.data.data, token: me.token });
+        console.log(newCatResponse.data);
+        login({ ...newCatResponse.data, token: me.token });
         setTrigger((preState) => !preState);
       } catch (error) {
         if (error.response) {

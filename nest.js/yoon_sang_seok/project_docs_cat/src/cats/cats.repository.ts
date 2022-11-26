@@ -1,4 +1,3 @@
-
 import { Cat } from 'src/schemas/cats.shcema';
 import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
@@ -18,10 +17,10 @@ export class CatsRepository {
     }
   }
 
-  async create(cat: CatRequestDto){
+  async create(cat: CatRequestDto) {
     return await this.catModel.create(cat);
   }
-  async findCatByEmail(email: string): Promise<Cat | null>{
+  async findCatByEmail(email: string): Promise<Cat | null> {
     const cat = await this.catModel.findOne({ email });
     return cat;
   }
@@ -29,5 +28,15 @@ export class CatsRepository {
   async findeCatByIdWithoutPassword(catId: string): Promise<Cat | null> {
     const cat = await this.catModel.findById(catId).select('-password');
     return cat;
+  }
+
+  async findByIdAndUpdateImg(catId: string, fileName: string) {
+    const cat = await this.catModel.findById(catId);
+    cat.imgUrl = `http://localhost:8000/media/${fileName}`;
+    const newCat = await cat.save();
+    return newCat.readOnlyData;
+  }
+  async findAll() {
+    return this.catModel.find();
   }
 }
