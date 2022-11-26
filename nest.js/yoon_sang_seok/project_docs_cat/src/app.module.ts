@@ -12,7 +12,7 @@ import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    MongooseModule.forRoot('mongodb+srv://nova:ZPVaLfCaU6aWiEH2@cluster0.7xyeubk.mongodb.net/cats?retryWrites=true&w=majority'),
+    MongooseModule.forRoot(process.env.DB),
     CatsModule,
     AuthModule,
   ],
