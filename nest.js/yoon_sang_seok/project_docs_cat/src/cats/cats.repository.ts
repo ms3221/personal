@@ -6,7 +6,7 @@ import { CatRequestDto } from './dto/cats.request.dto';
 
 @Injectable()
 export class CatsRepository {
-  constructor(@InjectModel(Cat.name) private readonly catModel: Model<Cat>) {}
+  constructor(@InjectModel(Cat.name) private readonly catModel: Model<Cat>) { }
 
   async existsByEmail(email: string) {
     try {

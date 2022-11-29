@@ -8,6 +8,7 @@ import { LoggerMiddleware } from './common/middlewares/logger.middleware';
 import { CatsController } from './cats/cats.controller';
 import { CatsModule } from './cats/cats.module';
 import { AuthModule } from './auth/auth.module';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { AuthModule } from './auth/auth.module';
     MongooseModule.forRoot(process.env.DB),
     CatsModule,
     AuthModule,
+    CommentsModule,
   ],
   controllers: [AppController, CatsController],
   providers: [AppService],
